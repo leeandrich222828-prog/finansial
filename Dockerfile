@@ -1,7 +1,7 @@
-# Menggunakan base image PHP-FPM berbasis Debian yang resmi dan ada di Docker Hub
+# Menggunakan base image PHP-FPM resmi berbasis Debian
 FROM php:8.2-fpm
 
-# Install Nginx dan library mysqli untuk database
+# Install Nginx dan ekstensi mysqli untuk database
 RUN apt-get update && apt-get install -y nginx \
     && docker-php-ext-install mysqli \
     && docker-php-ext-enable mysqli \
@@ -10,10 +10,10 @@ RUN apt-get update && apt-get install -y nginx \
 # Salin semua file proyek kamu ke folder web root
 COPY . /var/www/html/
 
-# Atur hak akses folder
+# Atur hak akses folder agar bisa dibaca oleh server
 RUN chown -R www-data:www-data /var/www/html
 
-# Buat konfigurasi Nginx agar mendengarkan port 80 secara internal
+# Buat konfigurasi Nginx standar untuk PHP
 RUN echo 'server { \
     listen 80 default_server; \
     listen [::]:80 default_server; \
@@ -30,5 +30,5 @@ RUN echo 'server { \
     } \
 }' > /etc/nginx/sites-available/default
 
-# Perintah untuk menjalankan PHP-FPM dan Nginx bersamaan saat kontainer menyala
-CMD service php-fpm start && nginx -g "daemon off;"
+# Perintah START yang benar: Jalankan PHP-FPM di background (-D), lalu jalankan Nginx di foreground
+CMD php-fpm -D && nginx -g "daemon off;"

@@ -8,14 +8,14 @@
     $sqlMasuk = "SELECT SUM(jumlah) as total FROM transaksi 
         WHERE tipe='masuk' 
         AND id_user=".$id_user." AND MONTH(tanggal) = MONTH(NOW()) AND YEAR(tanggal) = YEAR(NOW())";
-    $resultMasuk = $connection->query($sqlMasuk);
+    $resultMasuk = $koneksi->query($sqlMasuk);
     $rowMasuk = $resultMasuk->fetch_assoc();
     $totalMasuk = $rowMasuk['total'] ?? 0;
 
     $sqlKeluar = "SELECT SUM(jumlah) as total FROM transaksi 
         WHERE tipe='keluar' 
         AND id_user=".$id_user." AND MONTH(tanggal) = MONTH (NOW()) AND YEAR(tanggal) = YEAR (NOW())";
-    $resultKeluar = $connection->query($sqlKeluar);
+    $resultKeluar = $koneksi->query($sqlKeluar);
     $rowKeluar = $resultKeluar->fetch_assoc();
     $totalKeluar = $rowKeluar ['total'] ?? 0;
     $saldo = $totalMasuk - $totalKeluar; 

@@ -1,5 +1,8 @@
-# Menggunakan base image FrankenPHP resmi yang sudah include PHP 8.2/8.3
+# Menggunakan base image FrankenPHP resmi
 FROM dunglas/frankenphp:latest
+
+# Set variabel lingkungan untuk mematikan HTTPS otomatis FrankenPHP
+ENV SERVER_NAME=":80"
 
 # Install ekstensi mysqli yang dibutuhkan oleh aplikasi kamu
 RUN docker-php-ext-install mysqli \
@@ -11,6 +14,5 @@ COPY . /app/
 # Set kerja direktori ke folder aplikasi
 WORKDIR /app
 
-# Expose port yang digunakan FrankenPHP (default: 80 dan 443)
+# Expose port yang digunakan
 EXPOSE 80
-EXPOSE 443

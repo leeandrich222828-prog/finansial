@@ -41,8 +41,7 @@
 
 // $jsonMasuk = json_encode(array_values($dataMasuk));
 // $jsonKeluar = json_encode(array_values($dataKeluar));//
-
-// ?>
+?>
 <html>
     <?php include('./library/header.php'); ?>
     <?php include('./library/navbar.php'); ?>

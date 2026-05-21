@@ -11,14 +11,14 @@
             $error = "Semua field harus diisi!";
         } else {
             $cekEmail = "SELECT * FROM user WHERE email='".$email."'";
-            $resultCek = $connection->query($cekEmail);
+            $resultCek = $koneksi->query($cekEmail);
             
             if($resultCek->num_rows > 0){
                 $error = "Email sudah terdaftar, gunakan email lain!";
             } else {
                 $password = hash('sha256', $password);
                 $sql = "INSERT INTO user (nama, email, password) VALUES ('".$nama."','".$email."','".$password."')";
-                $connection->query($sql);
+                $koneksi->query($sql);
                 header("location: login.php");
             }
         }

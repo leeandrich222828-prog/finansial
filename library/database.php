@@ -1,10 +1,10 @@
 <?php
     $connection = new mysqli(
-        'mysql.railway.internal',
-        'root', 
+        'kodama.proxy.rlwy.net',
+        'root',
         'OHcifYURxsVCGmGDcAYttfzBRrqCcyEw',
         'railway',
-        3306
+        30201
     );
 
     if($connection->connect_error){

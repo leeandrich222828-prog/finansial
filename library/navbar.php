@@ -6,8 +6,9 @@
     }
     $host = $_SERVER['HTTP_HOST'];
     $base_url = $protocol."://".$host;
-    $project = "Finansial";
-    $url = $base_url."/".$project;
+    $url = $base_url;
+    // $project = "Finansial";
+    // $url = $base_url."/".$project;
 
 
 

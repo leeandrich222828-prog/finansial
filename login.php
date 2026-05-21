@@ -5,7 +5,7 @@
         $email = $_POST['email'];
         $password = hash('sha256',$_POST['password']);
         $sql = "SELECT * FROM user where email='".$email."' and password= '".$password."'";
-        $result = $connection->query($sql);
+        $result = $koneksi->query($sql);
         if($result->num_rows > 0){
             $row = $result->fetch_assoc();
             $_SESSION['nama'] = $row['nama'];
@@ -19,7 +19,7 @@
         } else {
             $password = hash('sha256', $password);
             $sql = "INSERT INTO user (nama, email, password) VALUES ('".$nama."','".$email."','".$password."')";
-            $connection->query($sql);
+            $koneksi->query($sql);
             header("location: login.php");
         }
 

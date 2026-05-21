@@ -1,13 +1,14 @@
 <?php
-$host = getenv('MYSQLHOST') ?: '127.0.0.1';
-$user = getenv('MYSQLUSER') ?: 'root';
-$pass = getenv('MYSQLPASSWORD') ?: '';
-$db   = getenv('MYSQLDATABASE') ?: 'railway';
-$port = getenv('MYSQLPORT') ?: '3306';
+// Mengambil data koneksi otomatis dari Environment Variables Railway
+$host     = getenv('MYSQLHOST') ?: 'localhost';
+$user     = getenv('MYSQLUSER') ?: 'root';
+$password = getenv('MYSQLPASSWORD') ?: '';
+$database = getenv('MYSQLDATABASE') ?: 'railway'; // <--- PASTIKAN INI 'railway'
+$port     = getenv('MYSQLPORT') ?: 3306;
 
-$connection = new mysqli($host, $user, $pass, $db, $port);
+$connection = mysqli_connect($host, $user, $password, $database, $port);
 
-if ($connection->connect_error) {
-    die("Koneksi gagal: " . $connection->connect_error);
+if (!$connection) {
+    die("Koneksi gagal: " . mysqli_connect_error());
 }
 ?>
